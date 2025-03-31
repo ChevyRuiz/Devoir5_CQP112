@@ -6,3 +6,5 @@ app = Flask(__name__)
 def main_page():
     if request.method == "GET":
         return render_template("index.html")
+    if request.method == "POST":
+        return render_template("result.html")
