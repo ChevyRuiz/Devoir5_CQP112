@@ -26,9 +26,13 @@ def valider_entree(entree):
 def main_page():
     if request.method == "GET":
         return render_template("index.html")
+    
+@app.route("/data1", methods=["GET", "POST"])
+def form_1():
+    if request.method == "GET":
+        return render_template("index.html")
     if request.method == "POST":
         string_poly = request.form.get("polynomial", "abc")
-
         # Checker si le input est valide
         if not valider_entree(string_poly):
             return render_template("error.html")
@@ -36,3 +40,17 @@ def main_page():
         # Retourner la primitive
         print(string_poly)
         return render_template("result.html")
+    
+@app.route("/data2", methods=["GET", "POST"])
+def form_2():
+    if request.method == "GET":
+        return render_template("index.html")
+    if request.method == "POST":
+        string_poly = request.form.get("polynomial2", "abc")
+        # Checker si le input est valide
+        if not valider_entree(string_poly):
+            return render_template("error2.html")
+        
+        # Retourner la primitive
+        print(string_poly)
+        return render_template("result2.html")
