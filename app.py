@@ -20,6 +20,20 @@ def valider_entree(entree):
         return True
     else:
         return False
+    
+def string_conversion(entree):
+    entree = entree.strip()
+    entree = entree.replace(' ', '')
+    entree = entree.replace('x^','x**' )
+    entree = list(entree)
+    i = 0
+    for i in range(len(entree)):
+        if entree[i] == "x" and i > 0 and entree[i-1].isdigit():
+            entree.insert(i,'*')
+
+    entree = ''.join(entree)
+    return entree
+
 
 # Application web
 @app.route("/", methods=["GET", "POST"])
@@ -36,7 +50,7 @@ def form_1():
         # Checker si le input est valide
         if not valider_entree(string_poly):
             return render_template("error.html")
-        
+        string_poly = string_conversion(string_poly)
         # Retourner la primitive
         print(string_poly)
         return render_template("result.html")
@@ -63,7 +77,7 @@ def form_2():
         # Checker si le input est valide
         if not valider_entree(string_poly):
             return render_template("error2.html")
-        
+        string_poly = string_conversion(string_poly)
         # Retourner la primitive
         print(string_poly)
         return render_template("result2.html")
