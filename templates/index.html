@@ -1,9 +1,9 @@
 {% extends "layout.html" %} {% block body %}
 <div class="container bg-white">
   <div class="row pt-3 mt-5">
+    <h1>Trouver la primitive de p(x)</h1>
     <p class="fs-4">
-      Ce programme vous permet de décomposer une fonction rationelle en
-      fractions partielles
+      Ce programme vous permet de trouver la primitive d'un polynome écrit de la forme ax^n + bx^m + c  
     </p>
   </div>
 </div>
@@ -12,24 +12,15 @@
     <div class="col-5 d-flex d-flex align-items-center justify-content-end">
       <p class="text-center fs-1">f(x) =</p>
     </div>
-    <div class="col-7">
+    <div class="col-7 d-flex align-items-center">
       <form method="post">
         <div class="form-group">
           <input
             type="text"
             autocomplete="off"
             class="form-control"
-            id="numerator"
-            placeholder="Numerateur"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            autocomplete="off"
-            class="form-control"
-            id="denominator"
-            placeholder="Denominateur"
+            name="polynomial"
+            placeholder="Polynome"
           />
         </div>
     </div>
