@@ -20,3 +20,6 @@ def valider_entree(entree):
 def prettify(entree):
     entree = entree.strip()
     entree = entree.replace(' ','')
+    # replace ^ by **
+
+int("")

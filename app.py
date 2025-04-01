@@ -3,7 +3,7 @@ import re
 
 app = Flask(__name__)
 
-# Fonctions
+# Fonctions d'aide
 def valider_entree(entree):
 
     entree = entree.strip()
@@ -32,7 +32,7 @@ def form_1():
     if request.method == "GET":
         return render_template("index.html")
     if request.method == "POST":
-        string_poly = request.form.get("polynomial", "abc")
+        string_poly = request.form.get("polynomial")
         # Checker si le input est valide
         if not valider_entree(string_poly):
             return render_template("error.html")
@@ -46,7 +46,20 @@ def form_2():
     if request.method == "GET":
         return render_template("index.html")
     if request.method == "POST":
-        string_poly = request.form.get("polynomial2", "abc")
+        #Checker que les 3 forms soient soumis
+        if not request.form.get("polynomial2") or not request.form.get("polynomiala") or not request.form.get("polynomialb"):
+            return render_template("error2.html")
+        
+        string_poly = request.form.get("polynomial2")
+        a_string = request.form.get("polynomiala")
+        b_string = request.form.get("polynomialb")
+        #Checker si a et b sont des entiers
+        try: 
+            int(a_string)
+            int(b_string)
+        except Exception:
+            return render_template("error2.html")
+        
         # Checker si le input est valide
         if not valider_entree(string_poly):
             return render_template("error2.html")
