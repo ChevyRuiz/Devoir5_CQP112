@@ -1,39 +1,9 @@
 from flask import Flask, render_template, request
 import re
+import sympy as sym
+from helpers import valider_entree, string_conversion, calculer_integrale
 
 app = Flask(__name__)
-
-# Fonctions d'aide
-def valider_entree(entree):
-
-    entree = entree.strip()
-    entree = entree.replace(' ','')
-
-    pattern1 = re.compile(r"^-?\d*x(?:\^\d+)?(?:\s*[+-]\s*\d*x?(?:\^\d+)?)*$")
-    pattern2 = re.compile(r"^(-?\d*)x\^([⁰¹²³⁴⁵⁶⁷⁸⁹]|\d+)$")
-    try:
-        int(entree)
-        return True
-    except Exception:
-        pass
-    if pattern1.match (entree) or pattern2.match(entree):
-        return True
-    else:
-        return False
-    
-def string_conversion(entree):
-    entree = entree.strip()
-    entree = entree.replace(' ', '')
-    entree = entree.replace('x^','x**' )
-    entree = list(entree)
-    i = 0
-    for i in range(len(entree)):
-        if entree[i] == "x" and i > 0 and entree[i-1].isdigit():
-            entree.insert(i,'*')
-
-    entree = ''.join(entree)
-    return entree
-
 
 # Application web
 @app.route("/", methods=["GET", "POST"])
@@ -52,8 +22,7 @@ def form_1():
             return render_template("error.html")
         string_poly = string_conversion(string_poly)
         # Retourner la primitive
-        print(string_poly)
-        return render_template("result.html")
+        return render_template("result.html", resultat1 = calculer_integrale(string_poly))
     
 @app.route("/data2", methods=["GET", "POST"])
 def form_2():

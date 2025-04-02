@@ -1,23 +1,34 @@
 import re
-#import sympy
+import sympy as sym
 
+# Fonctions d'aide
 def valider_entree(entree):
+    """
+    Cette fonction prend comme entree l'input user des formulaires, et checke
+    s'il est un polynome valide ou un entier en utilisant regex
+    """
 
+    # Enlever les espaces
     entree = entree.strip()
     entree = entree.replace(' ','')
 
-    pattern1 = re.compile(r"^-?\d*x(?:\^\d+)?(?:\s*[+-]\s*\d*x?(?:\^\d+)?)*$")
-    pattern2 = re.compile(r"^(-?\d*)x\^([⁰¹²³⁴⁵⁶⁷⁸⁹]|\d+)$")
+    # Pattern regex
+    pattern1 = re.compile(r"^[+-]?\d*x(?:\^\d+)?(?:\s*[+-]\s*\d*x?(?:\^\d+)?)*$")
+    pattern2 = re.compile(r"^([+-]?\d*)x\^([⁰¹²³⁴⁵⁶⁷⁸⁹]|\d+)$")
+
+    # Checker si c'est un entier
     try:
         int(entree)
         return True
     except Exception:
         pass
+
+    # Si ca match, on retourne vraie, else on retourve faux
     if pattern1.match (entree) or pattern2.match(entree):
         return True
     else:
         return False
-
+    
 def string_conversion(entree):
     entree = entree.strip()
     entree = entree.replace(' ', '')
@@ -31,18 +42,13 @@ def string_conversion(entree):
     entree = ''.join(entree)
     return entree
 
-    # later evaluate wqhen using sympy
+def calculer_integrale(entree):
+    try:
+        x = sym.Symbol("x")
+        function = eval(entree)
+        integral = sym.integrate(function, x)
+        return sym.latex(integral)
+    except Exception:
+        return ""
 
-
-prettify("5x^3+x^2+7")
-"""
-sympy.init_printing()
-x = sympy.Symbol('x')
-function = 3*x**2 + 1
-function_plot = sympy.plot(function, show=False)
-#integral = sympy.integrate(function, x)
-#integral_plot = sympy.plot(integral, show=False)
-function_plot.show()
-#print(integral)
-"""
 
