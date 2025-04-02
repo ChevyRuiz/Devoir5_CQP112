@@ -65,7 +65,7 @@ def calculer_aire(a, b, entree):
         x = sym.Symbol("x")
         function = eval(entree)
         aire = sym.integrate(function, (x, a, b))
-        return sym.latex(aire)
+        return sym.latex(abs(aire))
     except Exception:
         return ""
 
