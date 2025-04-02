@@ -50,5 +50,23 @@ def calculer_integrale(entree):
         return sym.latex(integral)
     except Exception:
         return ""
+    
+def calculer_derivee(entree):
+    try:
+        x = sym.Symbol("x")
+        function = eval(entree)
+        derivee = sym.diff(function, x)
+        return sym.latex(derivee)
+    except Exception:
+        return ""
+    
+def calculer_aire(a, b, entree):
+    try:
+        x = sym.Symbol("x")
+        function = eval(entree)
+        aire = sym.integrate(function, (x, a, b))
+        return sym.latex(aire)
+    except Exception:
+        return ""
 
 

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import re
 import sympy as sym
-from helpers import valider_entree, string_conversion, calculer_integrale
+from helpers import valider_entree, string_conversion, calculer_integrale, calculer_derivee, calculer_aire
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def form_1():
             return render_template("error.html")
         string_poly = string_conversion(string_poly)
         # Retourner la primitive
-        return render_template("result.html", resultat1 = calculer_integrale(string_poly))
+        return render_template("result.html", resultat1 = calculer_integrale(string_poly), resultat11 = calculer_derivee(string_poly))
     
 @app.route("/data2", methods=["GET", "POST"])
 def form_2():
@@ -38,8 +38,8 @@ def form_2():
         b_string = request.form.get("polynomialb")
         #Checker si a et b sont des entiers
         try: 
-            int(a_string)
-            int(b_string)
+            a = int(a_string)
+            b = int(b_string)
         except Exception:
             return render_template("error2.html")
         
@@ -49,4 +49,4 @@ def form_2():
         string_poly = string_conversion(string_poly)
         # Retourner la primitive
         print(string_poly)
-        return render_template("result2.html")
+        return render_template("result2.html", resultat2 = calculer_aire(a, b, string_poly))
