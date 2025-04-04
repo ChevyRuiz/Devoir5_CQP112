@@ -72,5 +72,4 @@ def form_2():
         data = base64.b64encode(buf.getbuffer()).decode("ascii")
         return render_template("result2.html", resultat2 = calculer_aire(a, b, string_poly), drawing=f"<img src='data:image/png;base64,{data}'/>")
     except Exception:
-        img = ""
         return render_template("result2.html", resultat2 = calculer_aire(a, b, string_poly), drawing="")
