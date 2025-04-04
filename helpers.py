@@ -1,11 +1,5 @@
 import re
 import sympy as sym
-import base64
-from io import BytesIO
-from matplotlib.figure import Figure
-import numpy as np
-import matplotlib
-matplotlib.use('agg')
 
 # Fonctions d'aide
 def valider_entree(entree):
