@@ -1,5 +1,11 @@
 import re
 import sympy as sym
+import base64
+from io import BytesIO
+from matplotlib.figure import Figure
+import numpy as np
+import matplotlib
+matplotlib.use('agg')
 
 # Fonctions d'aide
 def valider_entree(entree):
@@ -7,7 +13,7 @@ def valider_entree(entree):
     Cette fonction prend comme entree l'input user des formulaires, et checke
     s'il est un polynome valide ou un entier en utilisant regex
     """
-
+    valide = False
     # Enlever les espaces
     entree = entree.strip()
     entree = entree.replace(' ','')
@@ -25,9 +31,21 @@ def valider_entree(entree):
 
     # Si ca match, on retourne vraie, else on retourve faux
     if pattern1.match (entree) or pattern2.match(entree):
-        return True
+        valide = True
     else:
-        return False
+        valide = False
+
+    entree = string_conversion(entree)
+    
+    try:
+        x = sym.Symbol("x")
+        function = eval(entree)
+        derivee = sym.diff(function, x)
+        valide = True
+    except Exception:
+        valide = False
+
+    return valide
     
 def string_conversion(entree):
     entree = entree.strip()
@@ -68,5 +86,4 @@ def calculer_aire(a, b, entree):
         return sym.latex(abs(aire))
     except Exception:
         return ""
-
 

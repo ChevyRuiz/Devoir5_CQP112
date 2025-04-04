@@ -29,11 +29,17 @@
       </div>
       <div class="container bg-white">
         <div class="row pt-3 mt-5">
-          <h1>Trouver la primitive de p(x)</h1>
+          <h1>Trouver la primitive et la dérivéé de p(x)</h1>
           <p class="fs-4">
-            Ce programme vous permet de trouver la primitive d'un polynome écrit
-            de la forme ax^n + bx^m + c
+            Ce programme vous permet de trouver la primitive et dérivéé d'un polynome écrit
+            de la forme ax^n + bx^m + c. Par exemple:
           </p>
+          <ul>
+            <li>f(x) = -23</li>
+            <li>f(x) = 5x + 34</li>
+            <li>f(x) = -8x^2 + 56</li>
+            <li>f(x) = 5x^4 - 7x^2 - 67</li>
+          </ul>
         </div>
       </div>
       <div class="container bg-white">
@@ -67,9 +73,15 @@
         <div class="row pt-3 mt-5">
           <h1>Trouver l'aire sous la courbe de p(x) sur [a, b]</h1>
           <p class="fs-4">
-            Ce programme vous permet de trouver l'aire sous la courbe d'un polynome écrit
-            de la forme ax^n + bx^m + c, sur [a, b]
+            Ce programme vous permet de trouver l'aire algébrique sous la courbe d'un polynome écrit
+            de la forme ax^n + bx^m + c, sur [a, b]. Par exemple:
           </p>
+          <ul>
+            <li>f(x) = -23 | a = -7  b = 51</li>
+            <li>f(x) = 5x + 34 | a = 0 b = 45</li>
+            <li>f(x) = -8x^2 + 56 | a = -34 b = 0</li>
+            <li>f(x) = 5x^4 - 7x^2 - 67 | a = 1 b = 3 </li>
+          </ul>
         </div>
       </div>
       <div class="container bg-white">
@@ -121,6 +133,9 @@
         </div>
       </div>
       {% block section_two %}{% endblock %}
+    </div>
+    <div class="container">
+      <div class="footer py-5"></div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

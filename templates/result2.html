@@ -2,7 +2,9 @@
 <div class="container bg-white">
   <div class="row pt-3 mt-5 d-flex">
     <p class="fs-2">Aire: \( {{ resultat2 }} \)</p>
-    <img src="/static/area.jpg" alt="" />
+  </div>
+  <div class="row pt-3 mt-5 d-flex align-items-center justify-content-end">
+    {{ drawing | safe }}
   </div>
 </div>
 {% endblock %}
