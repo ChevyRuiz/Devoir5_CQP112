@@ -81,3 +81,22 @@ def calculer_aire(a, b, entree):
     except Exception:
         return ""
 
+
+def simplify_denom(entree):
+    x = sym.Symbol("x")
+    function = eval(entree)
+    num = sym.numer(entree)
+    denom = sym.denom(entree)
+
+    # Factoriser
+    try:
+        denom = sym.factor(denom)
+        num = sym.factor(num)
+    except (sym.SympifyError, TypeError, ValueError):
+        pass
+    
+    return sym.latex(sym.sympify(num/denom))
+
+def partial_fractions(entree):
+    x = sym.symbols("x")
+    return sym.latex(sym.apart(eval(entree)))
