@@ -82,7 +82,7 @@ def form_2():
             return render_template("error2.html")
         string_poly = string_conversion(string_poly)
 
-    # représenter graphiquement l'aire sous la courbe
+    # représenter graphiquement l'aire sous la courbe, reference: https://matplotlib.org/stable/gallery/user_interfaces/web_application_server_sgskip.html
     fig = Figure()
     ax = fig.subplots()
 
